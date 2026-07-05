@@ -1,0 +1,47 @@
+{
+  "userId": "user-1",
+  "traits": [
+    {
+      "id": "trait-1",
+      "category": "personality",
+      "label": "Curiosity",
+      "value": 0.72,
+      "description": "Drawn to explore new ideas and experiences",
+      "discoveredAt": "2026-07-04T14:00:00Z"
+    },
+    {
+      "id": "trait-2",
+      "category": "interests",
+      "label": "Reading",
+      "value": 0.65,
+      "description": "Enjoys getting lost in stories and ideas",
+      "discoveredAt": "2026-07-04T16:30:00Z"
+    },
+    {
+      "id": "trait-3",
+      "category": "values",
+      "label": "Authenticity",
+      "value": 0.81,
+      "description": "Values being genuine in relationships",
+      "discoveredAt": "2026-07-05T09:00:00Z"
+    },
+    {
+      "id": "trait-4",
+      "category": "habits",
+      "label": "Morning reflection",
+      "value": 0.45,
+      "description": "Starting to form a morning contemplation routine",
+      "discoveredAt": "2026-07-05T10:00:00Z"
+    },
+    {
+      "id": "trait-5",
+      "category": "communication",
+      "label": "Thoughtful",
+      "value": 0.68,
+      "description": "Takes time to consider before responding",
+      "discoveredAt": "2026-07-05T10:30:00Z"
+    }
+  ],
+  "completeness": 0.12,
+  "lastUpdated": "2026-07-05T10:30:00Z"
+}
