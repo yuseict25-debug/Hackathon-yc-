@@ -1,0 +1,93 @@
+{
+  "id": "room-initial",
+  "name": "Your Room",
+  "lighting": {
+    "warmth": 0.75,
+    "brightness": 0.6
+  },
+  "atmosphere": "peaceful",
+  "objects": [
+    {
+      "id": "floor",
+      "type": "floor",
+      "position": { "x": 960, "y": 900 },
+      "rotation": 0,
+      "scale": { "x": 1, "y": 1 },
+      "sprite": "placeholder-floor",
+      "visibility": true,
+      "metadata": { "layer": 0 }
+    },
+    {
+      "id": "wall-back",
+      "type": "wall",
+      "position": { "x": 960, "y": 400 },
+      "rotation": 0,
+      "scale": { "x": 1, "y": 1 },
+      "sprite": "placeholder-wall",
+      "visibility": true,
+      "metadata": { "layer": 0 }
+    },
+    {
+      "id": "window",
+      "type": "window",
+      "position": { "x": 960, "y": 280 },
+      "rotation": 0,
+      "scale": { "x": 1, "y": 1 },
+      "sprite": "placeholder-window",
+      "visibility": true,
+      "metadata": { "layer": 1 }
+    },
+    {
+      "id": "desk",
+      "type": "furniture",
+      "position": { "x": 960, "y": 620 },
+      "rotation": 0,
+      "scale": { "x": 1, "y": 1 },
+      "sprite": "placeholder-desk",
+      "visibility": true,
+      "metadata": { "category": "desk", "layer": 2 }
+    },
+    {
+      "id": "chair",
+      "type": "furniture",
+      "position": { "x": 960, "y": 720 },
+      "rotation": 0,
+      "scale": { "x": 1, "y": 1 },
+      "sprite": "placeholder-chair",
+      "visibility": true,
+      "metadata": { "category": "chair", "layer": 2 }
+    },
+    {
+      "id": "plant-small",
+      "type": "decoration",
+      "position": { "x": 320, "y": 650 },
+      "rotation": 0,
+      "scale": { "x": 1, "y": 1 },
+      "sprite": "placeholder-plant",
+      "visibility": true,
+      "metadata": { "category": "plant", "layer": 2 }
+    },
+    {
+      "id": "player",
+      "type": "character",
+      "position": { "x": 720, "y": 680 },
+      "rotation": 0,
+      "scale": { "x": 1, "y": 1 },
+      "sprite": "placeholder-player",
+      "animation": "idle",
+      "visibility": true,
+      "metadata": { "characterId": "player", "layer": 3 }
+    },
+    {
+      "id": "eula",
+      "type": "character",
+      "position": { "x": 1050, "y": 680 },
+      "rotation": 0,
+      "scale": { "x": 1, "y": 1 },
+      "sprite": "placeholder-eula",
+      "animation": "idle",
+      "visibility": true,
+      "metadata": { "characterId": "eula", "layer": 3 }
+    }
+  ]
+}
