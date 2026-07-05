@@ -5,7 +5,8 @@
       "role": "eula",
       "content": "Welcome to your room. This space will grow with you — every conversation shapes what appears here.",
       "timestamp": "2026-07-05T10:00:00Z",
-      "emotion": "happy"
+      "tone": "warm",
+      "animation": "happy"
     },
     {
       "id": "msg-2",
@@ -18,7 +19,8 @@
       "role": "eula",
       "content": "That's the beauty of it. An empty room holds infinite possibility. Tell me — what does a perfect morning look like for you?",
       "timestamp": "2026-07-05T10:01:30Z",
-      "emotion": "thinking"
+      "tone": "curious",
+      "animation": "thinking"
     }
   ],
   "isTyping": false

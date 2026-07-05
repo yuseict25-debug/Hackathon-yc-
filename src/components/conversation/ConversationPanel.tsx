@@ -1,20 +1,36 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { MessageCircle, Send, X } from "lucide-react";
-import { useState } from "react";
+import { MessageCircle, Mic, MicOff, Send, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useConversation } from "@/hooks/useConversation";
+import { useConversationStore } from "@/stores/useConversationStore";
 
 export function ConversationPanel() {
-  const { messages, isTyping, isPanelOpen, togglePanel, send } =
-    useConversation();
+  const {
+    messages,
+    isTyping,
+    isPanelOpen,
+    voiceModeEnabled,
+    togglePanel,
+    toggleVoiceMode,
+    send,
+  } = useConversation();
+  const setUserTyping = useConversationStore((s) => s.setUserTyping);
   const [input, setInput] = useState("");
+
+  useEffect(() => {
+    if (!isPanelOpen) {
+      setUserTyping(false);
+    }
+  }, [isPanelOpen, setUserTyping]);
 
   const handleSend = () => {
     if (!input.trim()) return;
+    setUserTyping(false);
     send(input.trim());
     setInput("");
   };
@@ -45,15 +61,41 @@ export function ConversationPanel() {
                 <h2 className="text-sm font-medium text-[#f5ebe0]">
                   Conversation
                 </h2>
-                <p className="text-xs text-[#a89888]">Talk with Eula</p>
+                <p className="text-xs text-[#a89888]">
+                  {voiceModeEnabled ? "Voice mode" : "Talk with Eula"}
+                </p>
               </div>
-              <button
-                onClick={togglePanel}
-                className="text-[#a89888] transition-colors hover:text-[#f5ebe0]"
-                aria-label="Close conversation"
-              >
-                <X className="h-4 w-4" />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={toggleVoiceMode}
+                  className={`rounded-full p-2 transition-colors ${
+                    voiceModeEnabled
+                      ? "bg-[#e8a87c]/20 text-[#e8a87c]"
+                      : "text-[#a89888] hover:text-[#f5ebe0]"
+                  }`}
+                  aria-label={
+                    voiceModeEnabled ? "Disable voice mode" : "Enable voice mode"
+                  }
+                  title={
+                    voiceModeEnabled
+                      ? "Voice mode on — speak to Eula"
+                      : "Switch to voice mode"
+                  }
+                >
+                  {voiceModeEnabled ? (
+                    <Mic className="h-4 w-4" />
+                  ) : (
+                    <MicOff className="h-4 w-4" />
+                  )}
+                </button>
+                <button
+                  onClick={togglePanel}
+                  className="text-[#a89888] transition-colors hover:text-[#f5ebe0]"
+                  aria-label="Close conversation"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
             </div>
 
             <div className="flex max-h-80 flex-col gap-3 overflow-y-auto px-5 py-4">
@@ -100,22 +142,44 @@ export function ConversationPanel() {
               )}
             </div>
 
-            <div className="flex gap-2 border-t border-[#e8a87c]/10 px-4 py-3">
-              <Input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                placeholder="Share something..."
-                className="border-[#e8a87c]/10 bg-[#2a2520] text-[#f5ebe0] placeholder:text-[#a89888]/50 focus-visible:border-[#e8a87c]/30"
-              />
-              <Button
-                onClick={handleSend}
-                size="icon"
-                className="shrink-0 bg-[#e8a87c]/15 text-[#e8a87c] hover:bg-[#e8a87c]/25"
-                aria-label="Send message"
-              >
-                <Send className="h-4 w-4" />
-              </Button>
+            <div className="border-t border-[#e8a87c]/10 px-4 py-3">
+              {voiceModeEnabled ? (
+                <div className="flex flex-col items-center gap-2 py-2">
+                  <button
+                    className="flex h-14 w-14 items-center justify-center rounded-full border border-[#e8a87c]/30 bg-[#e8a87c]/10 text-[#e8a87c] transition-colors hover:bg-[#e8a87c]/20"
+                    aria-label="Hold to speak"
+                    title="Audio stream — backend integration pending"
+                  >
+                    <Mic className="h-6 w-6" />
+                  </button>
+                  <p className="text-xs text-[#a89888]">
+                    Tap to speak — streams to backend
+                  </p>
+                </div>
+              ) : (
+                <div className="flex gap-2">
+                  <Input
+                    value={input}
+                    onChange={(e) => {
+                      setInput(e.target.value);
+                      setUserTyping(true);
+                    }}
+                    onFocus={() => setUserTyping(true)}
+                    onBlur={() => setUserTyping(false)}
+                    onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                    placeholder="Share something..."
+                    className="border-[#e8a87c]/10 bg-[#2a2520] text-[#f5ebe0] placeholder:text-[#a89888]/50 focus-visible:border-[#e8a87c]/30"
+                  />
+                  <Button
+                    onClick={handleSend}
+                    size="icon"
+                    className="shrink-0 bg-[#e8a87c]/15 text-[#e8a87c] hover:bg-[#e8a87c]/25"
+                    aria-label="Send message"
+                  >
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
             </div>
           </motion.div>
         )}

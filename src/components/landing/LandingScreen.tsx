@@ -12,12 +12,12 @@ export function LandingScreen() {
 
   const handleEnter = () => {
     setIsExiting(true);
-    setTimeout(() => router.push("/room"), 600);
+    setTimeout(() => router.push("/login"), 600);
   };
 
   return (
     <motion.main
-      className="fixed inset-0 flex flex-col items-center justify-center bg-[#1a1714]"
+      className="fixed inset-0 flex flex-col items-center justify-center bg-white"
       initial={{ opacity: 0 }}
       animate={{ opacity: isExiting ? 0 : 1 }}
       transition={{ duration: 0.6, ease: "easeInOut" }}
@@ -34,12 +34,12 @@ export function LandingScreen() {
             animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
-          <h1 className="relative text-6xl font-light tracking-[0.2em] text-[#f5ebe0]">
+          <h1 className="relative text-6xl font-light tracking-[0.2em] text-neutral-800">
             Eula
           </h1>
         </div>
 
-        <p className="max-w-md text-lg font-light tracking-wide text-[#a89888]">
+        <p className="max-w-md text-lg font-light tracking-wide text-neutral-500">
           Discover who you are.
         </p>
 
@@ -51,7 +51,7 @@ export function LandingScreen() {
           <Button
             onClick={handleEnter}
             size="lg"
-            className="mt-4 h-12 min-w-[160px] rounded-full border border-[#e8a87c]/30 bg-[#e8a87c]/10 px-8 text-base font-normal tracking-wider text-[#f5ebe0] hover:bg-[#e8a87c]/20"
+            className="mt-4 h-12 min-w-[160px] rounded-full border border-neutral-300 bg-neutral-100 px-8 text-base font-normal tracking-wider text-neutral-800 hover:bg-neutral-200"
           >
             Enter
           </Button>

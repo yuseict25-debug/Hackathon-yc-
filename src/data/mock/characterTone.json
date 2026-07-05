@@ -1,0 +1,10 @@
+{
+  "tone": "warm",
+  "animation": "happy",
+  "frames": [
+    "/images/characters/eula/happy/1.png",
+    "/images/characters/eula/happy/2.png"
+  ],
+  "speed": 0.12,
+  "loop": true
+}

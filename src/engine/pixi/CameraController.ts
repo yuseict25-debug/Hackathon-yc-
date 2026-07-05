@@ -1,6 +1,8 @@
 import { Container } from "pixi.js";
 
 import { BASE_HEIGHT, BASE_WIDTH } from "@/engine/constants";
+import { computeCameraZoom } from "@/engine/camera/cameraZoom";
+import type { WorldBounds } from "@/engine/world/worldBounds";
 
 export interface CameraState {
   offsetX: number;
@@ -9,6 +11,8 @@ export interface CameraState {
   targetOffsetX: number;
   targetOffsetY: number;
   parallaxStrength: number;
+  centerX: number;
+  centerY: number;
 }
 
 export class CameraController {
@@ -19,6 +23,8 @@ export class CameraController {
   private state: CameraState;
   private mouseX = BASE_WIDTH / 2;
   private mouseY = BASE_HEIGHT / 2;
+  private destroyed = false;
+  private followEnabled = false;
 
   constructor(worldContainer: Container) {
     this.worldContainer = worldContainer;
@@ -28,7 +34,9 @@ export class CameraController {
       zoom: 1,
       targetOffsetX: 0,
       targetOffsetY: 0,
-      parallaxStrength: 0.02,
+      parallaxStrength: 0.015,
+      centerX: BASE_WIDTH / 2,
+      centerY: BASE_HEIGHT / 2,
     };
 
     this.backgroundLayer = new Container();
@@ -58,21 +66,75 @@ export class CameraController {
     this.state.parallaxStrength = strength;
   }
 
-  setTargetOffset(x: number, y: number): void {
-    this.state.targetOffsetX = x;
-    this.state.targetOffsetY = y;
-  }
-
   handleMouseMove(screenX: number, screenY: number): void {
     this.mouseX = screenX;
     this.mouseY = screenY;
   }
 
+  updateFollow(
+    playerX: number,
+    playerY: number,
+    worldBounds: WorldBounds,
+    homeBounds: WorldBounds
+  ): void {
+    if (this.destroyed) return;
+    this.followEnabled = true;
+
+    const targetZoom = computeCameraZoom({
+      playerX,
+      playerY,
+      worldBounds,
+      homeBounds,
+    });
+
+    this.state.zoom += (targetZoom - this.state.zoom) * 0.06;
+
+    const visibleW = BASE_WIDTH / this.state.zoom;
+    const visibleH = BASE_HEIGHT / this.state.zoom;
+
+    let targetCenterX = playerX;
+    let targetCenterY = playerY;
+
+    const minCenterX = worldBounds.minX + visibleW / 2;
+    const maxCenterX = worldBounds.maxX - visibleW / 2;
+    const minCenterY = worldBounds.minY + visibleH / 2;
+    const maxCenterY = worldBounds.maxY - visibleH / 2;
+
+    if (minCenterX <= maxCenterX) {
+      targetCenterX = Math.max(minCenterX, Math.min(maxCenterX, targetCenterX));
+    } else {
+      targetCenterX = (worldBounds.minX + worldBounds.maxX) / 2;
+    }
+
+    if (minCenterY <= maxCenterY) {
+      targetCenterY = Math.max(minCenterY, Math.min(maxCenterY, targetCenterY));
+    } else {
+      targetCenterY = (worldBounds.minY + worldBounds.maxY) / 2;
+    }
+
+    this.state.centerX += (targetCenterX - this.state.centerX) * 0.1;
+    this.state.centerY += (targetCenterY - this.state.centerY) * 0.1;
+
+    this.applyWorldTransform();
+  }
+
   update(): void {
+    if (this.destroyed) return;
+    if (
+      this.backgroundLayer.destroyed ||
+      this.midgroundLayer.destroyed ||
+      this.foregroundLayer.destroyed
+    ) {
+      return;
+    }
+
     const centerX = BASE_WIDTH / 2;
     const centerY = BASE_HEIGHT / 2;
-    const dx = (this.mouseX - centerX) * this.state.parallaxStrength;
-    const dy = (this.mouseY - centerY) * this.state.parallaxStrength;
+    const parallaxScale = this.followEnabled ? Math.max(0.35, this.state.zoom) : 1;
+    const dx =
+      (this.mouseX - centerX) * this.state.parallaxStrength * parallaxScale;
+    const dy =
+      (this.mouseY - centerY) * this.state.parallaxStrength * parallaxScale;
 
     this.state.targetOffsetX = dx;
     this.state.targetOffsetY = dy;
@@ -88,6 +150,19 @@ export class CameraController {
     this.midgroundLayer.y = this.state.offsetY * 0.6;
     this.foregroundLayer.x = this.state.offsetX;
     this.foregroundLayer.y = this.state.offsetY;
+
+    if (this.followEnabled) {
+      this.applyWorldTransform();
+    }
+  }
+
+  private applyWorldTransform(): void {
+    const z = this.state.zoom;
+    this.worldContainer.scale.set(z);
+    this.worldContainer.position.set(
+      BASE_WIDTH / 2 - this.state.centerX * z,
+      BASE_HEIGHT / 2 - this.state.centerY * z
+    );
   }
 
   getState(): CameraState {
@@ -95,8 +170,15 @@ export class CameraController {
   }
 
   destroy(): void {
-    this.backgroundLayer.destroy({ children: true });
-    this.midgroundLayer.destroy({ children: true });
-    this.foregroundLayer.destroy({ children: true });
+    this.destroyed = true;
+    if (!this.backgroundLayer.destroyed) {
+      this.backgroundLayer.destroy({ children: true });
+    }
+    if (!this.midgroundLayer.destroyed) {
+      this.midgroundLayer.destroy({ children: true });
+    }
+    if (!this.foregroundLayer.destroyed) {
+      this.foregroundLayer.destroy({ children: true });
+    }
   }
 }

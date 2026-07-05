@@ -11,9 +11,9 @@ const RoomCanvas = dynamic(
 
 function RoomLoadingState() {
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-[#1a1714]">
+    <div className="absolute inset-0 flex items-center justify-center bg-white">
       <motion.div
-        className="h-2 w-2 rounded-full bg-[#e8a87c]"
+        className="h-2 w-2 rounded-full bg-neutral-400"
         animate={{ opacity: [0.3, 1, 0.3] }}
         transition={{ duration: 1.5, repeat: Infinity }}
       />
@@ -39,9 +39,9 @@ export function RoomViewport() {
   }, [updateDimensions]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center overflow-hidden bg-[#0f0d0b]">
+    <div className="fixed inset-0 flex items-center justify-center overflow-hidden bg-white">
       <motion.div
-        className="relative overflow-hidden shadow-2xl"
+        className="relative overflow-hidden"
         style={{
           width: dimensions.width || "min(100vw, calc(100vh * 16 / 9))",
           height: dimensions.height || "min(100vh, calc(100vw * 9 / 16))",

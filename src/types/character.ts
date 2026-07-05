@@ -1,9 +1,13 @@
 import type { Vector2 } from "./common";
+import type { PlayerMovementKey } from "./characterAnimations";
 
 export type CharacterId = "player" | "eula";
 
+export type Direction = "up" | "down" | "left" | "right";
+
 export type AnimationState =
   | "idle"
+  | "talking"
   | "walking"
   | "thinking"
   | "happy"
@@ -13,6 +17,8 @@ export type AnimationState =
   | "sit"
   | "confused"
   | "laugh";
+
+export type PlayerConversationMode = "none" | "thinking" | "talking";
 
 export interface CharacterData {
   id: CharacterId;
@@ -24,6 +30,12 @@ export interface CharacterData {
   emotion: AnimationState;
   sprite: string;
   visible: boolean;
+  direction: Direction;
+  isMoving: boolean;
+  /** Thinking / talking visuals while AI processes and responds */
+  conversationMode?: PlayerConversationMode;
+  /** Idle stance when not moving — driven by AI tone later */
+  stance?: PlayerMovementKey;
 }
 
 export interface SpriteSheetConfig {

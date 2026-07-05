@@ -3,7 +3,8 @@ export interface Message {
   role: "user" | "eula";
   content: string;
   timestamp: string;
-  emotion?: string;
+  tone?: string;
+  animation?: string;
 }
 
 export interface ConversationData {

@@ -1,3 +1,5 @@
+export { useAuthStore } from "./useAuthStore";
+export { useWorldStore } from "./useWorldStore";
 export { useRoomStore } from "./useRoomStore";
 export { useCharacterStore } from "./useCharacterStore";
 export { useFurnitureStore } from "./useFurnitureStore";
@@ -6,3 +8,4 @@ export { useIdentityStore } from "./useIdentityStore";
 export { useCompatibilityStore } from "./useCompatibilityStore";
 export { useCameraStore } from "./useCameraStore";
 export { useProfileStore } from "./useProfileStore";
+export { useSceneStore } from "./useSceneStore";

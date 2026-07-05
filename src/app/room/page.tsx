@@ -1,5 +1,10 @@
+import { RequireAuth } from "@/components/auth/RequireAuth";
 import { RoomExperience } from "@/components/room/RoomExperience";
 
 export default function RoomPage() {
-  return <RoomExperience />;
+  return (
+    <RequireAuth>
+      <RoomExperience />
+    </RequireAuth>
+  );
 }

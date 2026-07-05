@@ -1,0 +1,17 @@
+{
+  "revision": "mock-initial",
+  "background": {
+    "color": "#ffffff",
+    "floorColor": "#ffffff"
+  },
+  "lighting": {
+    "warmth": 0.75,
+    "brightness": 0.35
+  },
+  "movementControl": "player",
+  "character": {
+    "x": 960,
+    "y": 700,
+    "direction": "down"
+  }
+}
