@@ -1,0 +1,207 @@
+{
+  "characters": {
+    "eula": {
+      "idle": {
+        "frames": ["/images/characters/eula/idle/2.png"],
+        "speed": 0,
+        "loop": false
+      },
+      "talking": {
+        "frames": [
+          "/images/characters/eula/idle/1.png",
+          "/images/characters/eula/idle/2.png"
+        ],
+        "speed": 0.1,
+        "loop": true
+      },
+      "happy": {
+        "frames": [
+          "/images/characters/eula/happy/1.png",
+          "/images/characters/eula/happy/2.png"
+        ],
+        "speed": 0.12,
+        "loop": true
+      },
+      "thinking": {
+        "frames": [
+          "/images/characters/eula/thinking/1.png",
+          "/images/characters/eula/thinking/2.png"
+        ],
+        "speed": 0.1,
+        "loop": true
+      },
+      "sad": {
+        "frames": [
+          "/images/characters/eula/sad/1.png",
+          "/images/characters/eula/sad/2.png"
+        ],
+        "speed": 0.1,
+        "loop": true
+      },
+      "surprised": {
+        "frames": [
+          "/images/characters/eula/surprised/1.png",
+          "/images/characters/eula/surprised/2.png"
+        ],
+        "speed": 0.12,
+        "loop": true
+      },
+      "laugh": {
+        "frames": [
+          "/images/characters/eula/laugh/1.png",
+          "/images/characters/eula/laugh/2.png"
+        ],
+        "speed": 0.14,
+        "loop": true
+      },
+      "walking": {
+        "frames": [
+          "/images/characters/eula/walking/1.png",
+          "/images/characters/eula/walking/2.png"
+        ],
+        "speed": 0.15,
+        "loop": true
+      },
+      "wave": {
+        "frames": ["/images/characters/eula/wave/1.png"],
+        "speed": 0.1,
+        "loop": false
+      },
+      "confused": {
+        "frames": ["/images/characters/eula/thinking/1.png"],
+        "speed": 0.1,
+        "loop": true
+      },
+      "sit": {
+        "frames": ["/images/characters/eula/idle/1.png"],
+        "speed": 0.1,
+        "loop": false
+      }
+    }
+  },
+  "playerMovement": {
+    "idle": {
+      "frames": ["/images/characters/player/neutral/2.png"],
+      "speed": 0,
+      "loop": false,
+      "scale": 2.42
+    },
+    "talking": {
+      "frames": [
+        "/images/characters/eula/idle/1.png",
+        "/images/characters/eula/idle/2.png"
+      ],
+      "speed": 0.1,
+      "loop": true,
+      "scale": 2.42
+    },
+    "thinking": {
+      "frames": [
+        "/images/characters/eula/thinking/1.png",
+        "/images/characters/eula/thinking/2.png"
+      ],
+      "speed": 0.07,
+      "loop": true,
+      "scale": 2.42
+    },
+    "idle_down": {
+      "frames": ["/images/characters/player/down/2.png"],
+      "speed": 0,
+      "loop": false,
+      "scale": 0.463
+    },
+    "walk_down": {
+      "frames": [
+        "/images/characters/player/down/1.png",
+        "/images/characters/player/down/2.png"
+      ],
+      "speed": 0.15,
+      "loop": true,
+      "scale": 0.463
+    },
+    "idle_up": {
+      "frames": ["/images/characters/player/up/idle.png"],
+      "speed": 0,
+      "loop": false,
+      "scale": 1.3
+    },
+    "walk_up": {
+      "frames": [
+        "/images/characters/player/up/1.png",
+        "/images/characters/player/up/2.png"
+      ],
+      "speed": 0.15,
+      "loop": true,
+      "scale": 0.919
+    },
+    "walk_right": {
+      "frames": ["/images/characters/player/right/1.png"],
+      "speed": 0.15,
+      "loop": true,
+      "scale": 2.38
+    },
+    "walk_left": {
+      "frames": ["/images/characters/player/left/1.png"],
+      "speed": 0.15,
+      "loop": true,
+      "scale": 2.38
+    },
+    "happy": {
+      "frames": [
+        "/images/characters/eula/happy/1.png",
+        "/images/characters/eula/happy/2.png"
+      ],
+      "speed": 0.14,
+      "loop": true,
+      "scale": 2.42
+    },
+    "sad": {
+      "frames": [
+        "/images/characters/eula/sad/1.png",
+        "/images/characters/eula/sad/2.png"
+      ],
+      "speed": 0.08,
+      "loop": true,
+      "scale": 2.42
+    },
+    "laugh": {
+      "frames": [
+        "/images/characters/eula/laugh/1.png",
+        "/images/characters/eula/laugh/2.png"
+      ],
+      "speed": 0.16,
+      "loop": true,
+      "scale": 2.42
+    },
+    "surprised": {
+      "frames": [
+        "/images/characters/eula/surprised/1.png",
+        "/images/characters/eula/surprised/2.png"
+      ],
+      "speed": 0.13,
+      "loop": true,
+      "scale": 2.42
+    },
+    "wave": {
+      "frames": ["/images/characters/eula/wave/1.png"],
+      "speed": 0.1,
+      "loop": false,
+      "scale": 2.42
+    },
+    "confused": {
+      "frames": [
+        "/images/characters/eula/thinking/1.png",
+        "/images/characters/eula/thinking/2.png"
+      ],
+      "speed": 0.09,
+      "loop": true,
+      "scale": 2.42
+    },
+    "building": {
+      "frames": ["/images/characters/player/building/1.png"],
+      "speed": 0,
+      "loop": false,
+      "scale": 0.48
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "messages": [
+    {
+      "id": "msg-1",
+      "role": "eula",
+      "content": "Hey — you made it in. Our room's pretty bare right now, but that's kind of the fun part.",
+      "timestamp": "2026-07-05T10:00:00Z",
+      "tone": "warm",
+      "animation": "happy"
+    },
+    {
+      "id": "msg-2",
+      "role": "user",
+      "content": "It's so empty right now.",
+      "timestamp": "2026-07-05T10:01:00Z"
+    },
+    {
+      "id": "msg-3",
+      "role": "eula",
+      "content": "Right?? Empty rooms have good vibes though. We can fill it up however you want — no rush.",
+      "timestamp": "2026-07-05T10:01:30Z",
+      "tone": "curious",
+      "animation": "thinking"
+    }
+  ],
+  "isTyping": false
+}

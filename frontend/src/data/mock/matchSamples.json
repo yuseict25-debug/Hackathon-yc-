@@ -1,0 +1,39 @@
+{
+  "matches": [
+    {
+      "id": "match-1",
+      "name": "Mika",
+      "compatibilityScore": 0.91,
+      "sharedTraits": ["Curiosity", "Authenticity", "Morning reflection"],
+      "matchType": "friendship",
+      "summary": "You both recharge through quiet mornings and deep talks. Mika matches your thoughtful pace without forcing small talk.",
+      "avatarColor": "#7eb8da",
+      "vibe": "Calm explorer"
+    },
+    {
+      "id": "match-2",
+      "name": "Jordan",
+      "compatibilityScore": 0.84,
+      "sharedTraits": ["Reading", "Direct communication", "Building things"],
+      "matchType": "cofounder",
+      "summary": "Jordan thinks in systems like you do — great if you want someone who ships ideas instead of just brainstorming.",
+      "avatarColor": "#a8d8a8",
+      "vibe": "Builder brain"
+    },
+    {
+      "id": "match-3",
+      "name": "Sam",
+      "compatibilityScore": 0.78,
+      "sharedTraits": ["Warm humor", "Cozy spaces", "Honest feedback"],
+      "matchType": "roommate",
+      "summary": "Sam's energy is playful but grounded. You'd probably argue about plants and then stay up talking anyway.",
+      "avatarColor": "#e8a87c",
+      "vibe": "Cozy chaos"
+    }
+  ],
+  "personality": {
+    "headline": "Thoughtful, curious, and quietly ambitious",
+    "traits": ["Curiosity", "Authenticity", "Reading", "Morning reflection", "Thoughtful"],
+    "completeness": 0.12
+  }
+}

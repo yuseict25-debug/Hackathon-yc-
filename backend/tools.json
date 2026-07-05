@@ -1,0 +1,146 @@
+{
+    "tools": [
+        {
+            "name": "ADD_OBJECT",
+            "description": "Add a new object to the room. Use this whenever the user asks to add, place, or get something (cat, sofa, plant, desk, etc.). Do NOT ask for confirmation — add it immediately with sensible defaults.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "object": {
+                        "type": "object",
+                        "description": "Object to add. Do NOT include id — the server generates it.",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "description": "What the object is, e.g. cat, sofa, plant, lamp"
+                            },
+                            "x": {
+                                "type": "number",
+                                "description": "Horizontal position in room (0–1120). Default 560."
+                            },
+                            "y": {
+                                "type": "number",
+                                "description": "Vertical position in room (0–720). Default 450."
+                            },
+                            "width": {
+                                "type": "number",
+                                "description": "Width in room pixels. REQUIRED — pick by size: tiny 72, small 110, medium 160, large 240, xl 300."
+                            },
+                            "height": {
+                                "type": "number",
+                                "description": "Height in room pixels. REQUIRED — pick by size: tiny 80, small 120, medium 175, large 200, xl 220."
+                            }
+                        },
+                        "required": ["type"]
+                    }
+                },
+                "required": ["object"]
+            },
+            "example": {
+                "name": "ADD_OBJECT",
+                "params": {
+                    "object": { "type": "cat", "x": 600, "y": 500, "width": 110, "height": 120 }
+                }
+            },
+            "returns": "Updated room state with the object added."
+        },
+        {
+            "name": "MOVE_OBJECT",
+            "description": "Move an existing room object to a new x/y position. Use when the user asks to move, shift, nudge, or relocate something. Match objects by their id OR type from the current room state (e.g. type \"cat\"). Do NOT ask permission — move it immediately.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Object id from room state, OR the object type (e.g. \"cat\", \"sofa\") if unique."
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Alternative: object type to move when id is unknown."
+                    },
+                    "x": {
+                        "type": "number",
+                        "description": "New horizontal position in room space (0–1120)."
+                    },
+                    "y": {
+                        "type": "number",
+                        "description": "New vertical position in room space (0–720)."
+                    }
+                },
+                "required": ["x", "y"]
+            },
+            "example": {
+                "name": "MOVE_OBJECT",
+                "params": { "type": "cat", "x": 320, "y": 400 }
+            },
+            "returns": "Updated room state with object moved."
+        },
+        {
+            "name": "REMOVE_OBJECT",
+            "description": "Remove an object from the room state.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "ID of the object to remove."
+                    }
+                },
+                "required": ["id"]
+            },
+            "returns": "Updated room state with object removed."
+        },
+        {
+            "name": "REPLACE_OBJECT",
+            "description": "Replace an existing object with a new version.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "ID of the object to replace."
+                    },
+                    "new_object": {
+                        "type": "object",
+                        "description": "The new object definition (same shape as ADD_OBJECT object)."
+                    }
+                },
+                "required": ["id", "new_object"]
+            },
+            "returns": "Updated room state with object replaced."
+        },
+        {
+            "name": "RETURN_HOME",
+            "description": "Walk back to the default spawn point. Use when the user says come back, return, go back, etc. — especially between chained actions.",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            },
+            "example": {
+                "name": "RETURN_HOME",
+                "params": {}
+            },
+            "returns": "Queues a walk-home step."
+        },
+        {
+            "name": "PLAYER_ACT",
+            "description": "Player character gesture/emote after moving (eat, celebrate, wave). Use for actions like 'eat the burger' that are not room object changes.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "stance": {
+                        "type": "string",
+                        "description": "happy|laugh|wave|thinking|sad|surprised|talking"
+                    }
+                },
+                "required": ["stance"]
+            },
+            "example": {
+                "name": "PLAYER_ACT",
+                "params": { "stance": "happy" }
+            },
+            "returns": "Queues a player emote."
+        }
+    ]
+}
